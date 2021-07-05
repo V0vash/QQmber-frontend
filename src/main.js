@@ -15,7 +15,48 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:4000',
 })
 
-const cache = new InMemoryCache()
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        infiniteScrollPosts: {
+          // Don't cache separate results based on
+          // any of this field's arguments.
+          keyArgs: false,
+          // Concatenate the incoming list items with
+          // the existing list items.
+          merge(existing, incoming, {args}) {
+
+            console.log(existing, incoming, args)
+
+            if(args.pageNum === 1) return incoming
+             
+            if (!existing) return incoming
+
+            return {
+              __typename: incoming.__typename,
+              hasMore: incoming.hasMore,
+              posts: [...existing.posts, ...incoming.posts]
+            }
+
+          },
+          // read (existing) {
+          //   console.log('read', existing)
+          //   if (existing) {
+          //     const hasMore = existing.hasMore
+          //     return {
+          //       // next: existing.next,
+          //       __typename: existing.__typename,
+          //       posts: Object.values(existing.posts),
+          //       hasMore
+          //     }
+          //   }
+          // }
+        }
+      }
+    }
+  }
+})
 
 const apolloClient = new ApolloClient({
   link: httpLink,

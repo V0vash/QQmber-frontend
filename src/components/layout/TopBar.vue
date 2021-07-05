@@ -20,7 +20,7 @@
                         
                         <router-link 
                             class="text-2xl font-bold mx-10 text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
-                            to="/">Brand
+                            to="/"><img class="w-12" src="@/assets/QQ_logo.png">
                         </router-link>
 
                         <!-- Search input on desktop screen -->
