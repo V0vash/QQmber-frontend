@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <div v-for="post in posts" :key="post._id">{{ post.title }}</div>
+    <div v-for="post in posts" :key="post._id">
+      <Card v-bind="post"/>
+    </div>
 
       <p>{{loading}}</p>
 
@@ -16,13 +18,14 @@
 <script>
 import { ref } from 'vue'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import { GET_INFINITE_SCROLL_POSTS } from '@/graphql' 
+import { GET_INFINITE_SCROLL_POSTS } from '@/graphql'
+import Card from '@/components/Card.vue'
 
 const pageSize = 2;
 
 export default {
   name: "Posts",
-
+  components: {Card},
   setup(){
 
     let currentPage = ref(1);

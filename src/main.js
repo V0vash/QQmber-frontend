@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
+import { setContext } from '@apollo/client/link/context';
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
 import Layout from './components/layout/Layout.vue';
@@ -14,6 +15,18 @@ import './index.css'
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000',
 })
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? token : "",
+    }
+  }
+});
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -59,8 +72,8 @@ const cache = new InMemoryCache({
 })
 
 const apolloClient = new ApolloClient({
-  link: httpLink,
   cache,
+  link: authLink.concat(httpLink),
 })
 
 

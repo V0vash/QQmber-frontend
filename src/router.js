@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from "./pages/Home.vue";
 import Posts from "./pages/Posts.vue";
+import Post from "./pages/Post.vue";
 import AddPost from "./pages/AddPost.vue";
 import Profile from "./pages/Profile.vue";
 import Signin from "./pages/Signin.vue";
@@ -19,6 +20,12 @@ export default createRouter({
       path: "/posts",
       name: "Posts",
       component: Posts
+    },
+    {
+      path: "/posts/:postId",
+      name: "Post",
+      component: Post,
+      props: true
     },
     {
       path: "/post/add",
