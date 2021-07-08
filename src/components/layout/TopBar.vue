@@ -57,9 +57,10 @@
                         <router-link 
                             class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-blue-600 md:mx-2 md:w-auto" 
                             to="/signin">Login</router-link>
-                        <router-link 
+                        <button
+                            @click="signOut"
                             class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 md:mx-0 md:w-auto" 
-                            to="/signup">Join free</router-link>
+                            >LogOut</button>
                     </div>
 
                     <!-- Search input on mobile screen -->
@@ -83,17 +84,19 @@
 <script>
 import { useSidebar } from "@/hooks/useSidebar";
 import { useTheme } from "@/hooks/useTheme";
-
+import { useAuth } from "@/hooks/useAuth";
 export default {
   name: "TopBar",
   setup(){
       const { toggleTheme } = useTheme();
       const { currentTheme } = useTheme();
       const { isOpen } = useSidebar();
+      const { signOut } = useAuth();
       return{
           currentTheme,
           toggleTheme,
-          isOpen
+          isOpen,
+          signOut
       }
   }
 };

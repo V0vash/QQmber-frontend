@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import { useAuth } from "@/hooks/useAuth";
+
 import Home from "./pages/Home.vue";
 import Posts from "./pages/Posts.vue";
 import Post from "./pages/Post.vue";
@@ -8,7 +10,9 @@ import Profile from "./pages/Profile.vue";
 import Signin from "./pages/Signin.vue";
 import Signup from "./pages/Signup.vue";
 
-export default createRouter({
+
+
+const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
@@ -51,3 +55,6 @@ export default createRouter({
     }
   ]
 })
+
+
+export default router

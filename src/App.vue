@@ -10,6 +10,8 @@ import { useRouter } from "vue-router";
 
 const defaultLayout = "default";
 
+import { useAuth } from "./hooks/useAuth";
+
 export default defineComponent({
   setup() {
     const { currentRoute } = useRouter();
@@ -17,6 +19,9 @@ export default defineComponent({
       () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
     );
 
+    // const { getCurrentUser } = useAuth()
+    //
+    // getCurrentUser()
 
 
     return {

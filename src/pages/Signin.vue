@@ -28,7 +28,7 @@
                       <a href="#" class="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</a>
 
                       <button
-                          @click="sendMessage"
+                          @click="signIn"
                           class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none" type="button">
                           Login
                       </button>
@@ -47,30 +47,31 @@
 
 <script>
 import { useMutation } from '@vue/apollo-composable'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { SIGNIN_USER } from '@/graphql'
+import { useRouter, useRoute } from 'vue-router'
+import { useAuth } from "../hooks/useAuth";
 
 export default {
   name: "Signin",
   setup(){
-    const login = ref('')
-    const password = ref('')
+    const router = useRouter()
 
-    const { mutate: sendMessage } = useMutation(SIGNIN_USER, {
-      variables: {
-        username: 'Fofo',
-        password: 'Fofo'
-      },
-      update: (cache, { data: { signinUser } }) => {
-        localStorage.setItem("token", signinUser.token);
-        console.log(signinUser)
-      },
-    })
+    const{ login, password, signIn, currentUser} = useAuth()
+
+    watch(currentUser,(newValue, oldValue) => {
+
+      console.log(newValue, oldValue)
+      if(newValue){
+        router.push("/");
+      }
+    });
 
     return{
       login,
       password,
-      sendMessage
+      signIn,
+      currentUser
     }
   }
 };
