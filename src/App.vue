@@ -19,9 +19,9 @@ export default defineComponent({
       () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
     );
 
-    // const { getCurrentUser } = useAuth()
+    const { getCurrentUser } = useAuth()
     //
-    // getCurrentUser()
+    getCurrentUser()
 
 
     return {

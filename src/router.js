@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { state } from '@/hooks/useAuth'
 
-import { useAuth } from "@/hooks/useAuth";
 
 import Home from "./pages/Home.vue";
 import Posts from "./pages/Posts.vue";
@@ -56,5 +56,16 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach((to, from, next) => {
 
+  console.log(state.authenticating)
+
+
+  if ( to.name !== 'Signin' && to.name !== 'Signup' && !state.authenticating ) {
+
+    next({ name: 'Signin' })
+  }
+
+  else next()
+})
 export default router

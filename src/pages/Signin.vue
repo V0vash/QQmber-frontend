@@ -46,9 +46,7 @@
 </template>
 
 <script>
-import { useMutation } from '@vue/apollo-composable'
 import { ref, watch } from 'vue'
-import { SIGNIN_USER } from '@/graphql'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuth } from "../hooks/useAuth";
 
@@ -57,9 +55,9 @@ export default {
   setup(){
     const router = useRouter()
 
-    const{ login, password, signIn, currentUser} = useAuth()
+    const{ login, password, signIn, user} = useAuth()
 
-    watch(currentUser,(newValue, oldValue) => {
+    watch(user,(newValue, oldValue) => {
 
       console.log(newValue, oldValue)
       if(newValue){
@@ -71,7 +69,7 @@ export default {
       login,
       password,
       signIn,
-      currentUser
+      user
     }
   }
 };
