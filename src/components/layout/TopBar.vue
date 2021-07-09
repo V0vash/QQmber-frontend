@@ -1,6 +1,6 @@
 <template>
    <nav class="bg-white shadow dark:bg-gray-800">
-        <div class="container px-6 py-3 mx-auto">
+        <div class="px-8 py-3 mx-auto">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex items-center justify-between">
 
@@ -44,8 +44,55 @@
                 <div class="items-center md:flex">
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
 
+                      <div class="">
+                        <!-- NOTIFICATION BUTTON -->
+                        <button
+                            @click="showNotification = !showNotification"
+                            class="mx-2 transition-colors duration-300 ease-in-out p-1 text-gray-600 bg-gray-200 rounded-md dark:bg-gray-700 dark:text-gray-200 hover:text-gray-700 hover:bg-gray-400 dark:hover:bg-gray-500 dark:hover:text-gray-200 focus:outline-none">
+                          <svg class="w-7 h-7 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                          </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div v-if="showNotification"
+                             class="absolute right-5 z-20 mt-6 overflow-hidden bg-white rounded-md shadow-lg w-80 dark:bg-gray-800">
+                          <div class="py-2">
+                            <a href="#" class="flex items-center px-4 py-3 -mx-2 transition-colors duration-200 transform border-b hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-700">
+                              <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
+                              <p class="mx-2 text-sm text-gray-600 dark:text-white">
+                                <span class="font-bold" href="#">Sara Salah</span> replied on the <span class="font-bold text-blue-500" href="#">Upload Image</span> artical . 2m
+                              </p>
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-3 -mx-2 transition-colors duration-200 transform border-b hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-700">
+                              <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="avatar">
+                              <p class="mx-2 text-sm text-gray-600 dark:text-white">
+                                <span class="font-bold" href="#">Slick Net</span> start following you . 45m
+                              </p>
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-3 -mx-2 transition-colors duration-200 transform border-b hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-700">
+                              <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
+                              <p class="mx-2 text-sm text-gray-600 dark:text-white">
+                                <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span class="font-bold text-blue-500" href="#">Test with TDD</span> artical . 1h
+                              </p>
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-3 -mx-2 transition-colors duration-200 transform hover:bg-gray-100 dark:hover:bg-gray-700">
+                              <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=398&q=80" alt="avatar">
+                              <p class="mx-2 text-sm text-gray-600 dark:text-white">
+                                <span class="font-bold" href="#">Abigail Bennett</span> start following you . 3h
+                              </p>
+                            </a>
+                          </div>
+                          <a href="#" class="block py-2 font-bold text-center text-white bg-gray-800 dark:bg-gray-700 hover:underline">See all notifications</a>
+                        </div>
+                      </div>
+
+
+
+                      <!-- THEME TOGGLE -->
                         <button  @click="toggleTheme"
-                            aria-label="dark mode button" class="transition-colors duration-300 ease-in-out p-1 text-gray-600 bg-gray-200 rounded-md dark:bg-gray-700 dark:text-gray-200 hover:text-gray-700 hover:bg-gray-400 dark:hover:bg-gray-500 dark:hover:text-gray-200 focus:outline-none">
+                            aria-label="dark mode button"
+                            class="mx-2 transition-colors duration-300 ease-in-out p-1 text-gray-600 bg-gray-200 rounded-md dark:bg-gray-700 dark:text-gray-200 hover:text-gray-700 hover:bg-gray-400 dark:hover:bg-gray-500 dark:hover:text-gray-200 focus:outline-none">
                             <svg v-if="currentTheme == 'light'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-7 h-7">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                             </svg>
@@ -54,12 +101,12 @@
                             </svg>
                         </button>
 
-                        <router-link 
-                            class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-blue-600 md:mx-2 md:w-auto" 
-                            to="/signin">Login</router-link>
+<!--                        <router-link -->
+<!--                            class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-blue-600 md:mx-2 md:w-auto" -->
+<!--                            to="/signin">Login</router-link>-->
                         <button
                             @click="signOut"
-                            class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 md:mx-0 md:w-auto" 
+                            class="block w-1/2 px-3 py-2 mx-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 md:mx-0 md:w-auto"
                             >LogOut</button>
                     </div>
 
@@ -82,6 +129,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { useSidebar } from "@/hooks/useSidebar";
 import { useTheme } from "@/hooks/useTheme";
 import { useAuth } from "@/hooks/useAuth";
@@ -92,7 +140,11 @@ export default {
       const { currentTheme } = useTheme();
       const { isOpen } = useSidebar();
       const { signOut } = useAuth();
+
+      const showNotification = ref(false)
+
       return{
+          showNotification,
           currentTheme,
           toggleTheme,
           isOpen,
